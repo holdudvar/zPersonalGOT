@@ -1,11 +1,11 @@
 body {
-  background: rgba(80, 80, 80, 0.8) url('/assets/site/mapblue.jpg') no-repeat fixed center;
+  background: url('/assets/site/mapblue.jpg') no-repeat fixed center;
 }
 
 
 .headerBand__header {
   position: relative;
-margin: 0 auto;
+margin: 20px auto;
 width: 1300px;
   padding: 0.4em;
 text-align: center;
@@ -15,12 +15,25 @@ background: rgba(80, 80, 80, 0.7)
 }
 
 .mainArea {
+  margin:auto;
+  float: left;
+  width:80%;
   position: relative;
-  background: rgba(80, 80, 80, 0.7)
 
 }
 
 .sidebar {
-  position: relative;
-  background: rgba(80, 80, 80, 0.7)
+  margin:auto;
+float: right;
+width:20%;
+position: relative;
+background: rgba(80, 80, 80, 1)
+}
+
+.portraitContainer {
+font-weight: bold;
+margin:auto;
+float: left;
+padding: 5px;
+    width:15.5%;
 }
