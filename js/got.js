@@ -15,6 +15,9 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Innen hívhatod meg a többi függvényed
 
   galleryDisplay(sortByName(collectAlive(userDatas)));
+  // document.querySelector('#userQueryButton').addEventListener('click', userSearch(userDatas));
+
+
 
 }
 
@@ -76,3 +79,43 @@ function galleryDisplay(arr) {
   }
   document.querySelector('#mainBox').innerHTML = content;
 }
+
+
+
+
+
+
+
+function userSearch(arr) {
+  var searchFound = [];
+  var inputLowerCase = document.querySelector('#userQuery').value.toLowerCase();
+  for (var k in arr) {
+    if (arr.hasOwnProperty(k)) {
+      if (arr[k].name.toLowerCase() === inputLowerCase) {
+        searchFound.push(arr[k]);
+      }
+    }
+  }
+  userSearchFoundWriteToPage(searchFound);
+}
+
+function userSearchFoundWriteToPage(arr) {
+  var content = '';
+  if (arr[0].name) {
+    content = `
+<div><img src="${arr[0].picture}" alt="">${arr[0].name}'s picture</div>
+<div>
+  <p></p>
+  <img src="" alt="szia!">
+</div>
+<div>
+  <p class="characterDesc" >${arr[0].bio}</p>
+</div>
+
+`;
+  } else {
+    content = 'Character not found';
+  }
+  document.querySelector('#queryResultBox').innerHTML = content;
+}
+

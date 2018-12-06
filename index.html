@@ -15,13 +15,20 @@
   </div>
   <div>
     <div id="mainBox" class="mainArea"></div>
-    <div id="sideBox" class="sidebar"></div>
+    <div id="sideBox" class="sidebar">
+      <div id="queryResultBox"></div>
+
+      <div class="sidebar__input">
+        <br>
+        <button id="userQueryButton" class="button" onclick="userSearch()">&gt</button>
+        <input class="userInput" id="userQuery" type="text" placeholder="name of character">
+      </div>
+    </div>
   </div>
-  
+
   
 
-
-    <script src="./js/got.js"></script>
+  <script src="./js/got.js"></script>
 
 </body>
 
