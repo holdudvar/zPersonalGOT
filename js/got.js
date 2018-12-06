@@ -14,7 +14,7 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   var userDatas = JSON.parse(xhttp.responseText);
   // Innen hívhatod meg a többi függvényed
 
-  galleryDisplay(collectAlive(userDatas));
+  galleryDisplay(sortByName(collectAlive(userDatas)));
 
 }
 
@@ -38,10 +38,29 @@ function collectAlive(arr) {
   return alive;
 }
 
+function stringCompare(a, b) {
+  a.toLowerCase();
+  b.toLowerCase();
+  return a.localeCompare(b);
+}
 
-
-
-
+function sortByName(arr) {
+  var temp = [];
+  for (var i = 0; i < arr.length - 1; i += 1) {
+    if (arr.hasOwnProperty(i)) {
+      for (var j = i + 1; j < arr.length; j += 1) {
+        if (arr.hasOwnProperty(j)) {
+          if (stringCompare(arr[i].name, arr[j].name) > 0) {
+            temp = [arr[i], arr[j]];
+            arr[i] = temp[1];
+            arr[j] = temp[0];
+          }
+        }
+      }
+    }
+  }
+  return arr;
+}
 
 function galleryDisplay(arr) {
   var content = '';

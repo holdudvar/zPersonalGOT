@@ -4,6 +4,7 @@ body {
 
 
 .headerBand__header {
+  display: none;
   position: relative;
 margin: 20px auto;
 width: 1300px;
@@ -35,5 +36,6 @@ font-weight: bold;
 margin:auto;
 float: left;
 padding: 5px;
-    width:15.5%;
+    width:12.5%;
+    text-align: center;
 }
