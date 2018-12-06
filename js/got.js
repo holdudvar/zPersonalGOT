@@ -13,6 +13,9 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Nem szabad globálisba kitenni a userDatas-t!
   var userDatas = JSON.parse(xhttp.responseText);
   // Innen hívhatod meg a többi függvényed
+
+gallerySort(userDatas);
+
 }
 
 getGameOfThronesCharacterDatas(
@@ -22,3 +25,19 @@ getGameOfThronesCharacterDatas(
 
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
+
+function gallerySort(arr) {
+  var content = '';
+  for (var k in arr) {
+    if (arr.hasOwnProperty(k)) {
+      content += `
+<div class="portraitContainer">
+      <img src="${arr[k].portrait}" alt="${arr[k].name}'s portrait">
+      <br>
+      <p>${arr[k].name}</p>
+</div>
+`;
+    }
+  }
+document.querySelector('#mainBox').innerHTML = content;
+}

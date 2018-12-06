@@ -1,0 +1,26 @@
+body {
+  background: rgba(80, 80, 80, 0.8) url('/assets/site/mapblue.jpg') no-repeat fixed center;
+}
+
+
+.headerBand__header {
+  position: relative;
+margin: 0 auto;
+width: 1300px;
+  padding: 0.4em;
+text-align: center;
+font-size: 30px;
+font-weight: 900;
+background: rgba(80, 80, 80, 0.7)
+}
+
+.mainArea {
+  position: relative;
+  background: rgba(80, 80, 80, 0.7)
+
+}
+
+.sidebar {
+  position: relative;
+  background: rgba(80, 80, 80, 0.7)
+}
