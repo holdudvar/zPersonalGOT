@@ -70,3 +70,32 @@ padding: 5px;
   position: absolute;
   top: 85vh;
 }
+
+.sidebar__charDescDiv__descP {
+  font-size: 0.5em;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.sidebar__charImages {
+  size: 100%
+}
+
+.sidebar__charImages__img {
+  font-size: 0.5em;
+  max-width: 100%;
+  
+}
+
+.sidebar__charNameLine__name {
+display: inline-block;
+}
+
+
+.sidebar__charNameLine__coaPic {
+  display: inline-block;
+}
+
+.sidebar__charDescDiv {
+
+}

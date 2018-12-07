@@ -15,7 +15,6 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Innen hívhatod meg a többi függvényed
 
   galleryDisplay(sortByName(collectAlive(userDatas)));
-  // document.querySelector('#userQueryButton').addEventListener('click',userQueryClick);
 
 
 
@@ -98,7 +97,7 @@ function galleryDisplay(arr) {
 function portraitClickDisplay(obj) {
   var objInArr = [];
   objInArr.push(obj);
-  userSearchFoundWriteToPage(objInArr)
+  userSearchFoundWriteToPage(objInArr);
 }
 
 
@@ -127,22 +126,64 @@ function userSearch(arr) {
   userSearchFoundWriteToPage(searchFound);
 }
 
+// function makeSidebarDisplay(name, picPath, house, housePicPath, bio) {
+//   var contentDiv = document.createElement('div');
+//   var charPicImg = document.createElement('img');
+//   charPicImg.setAttribute('src', picPath);
+//   charPicImg.setAttribute('alt', name);
+//   contentDiv.appendChild(charPicImg);
+//   var nameLineDiv = document.createElement('div');
+//   contentDiv.appendChild(nameLineDiv);
+//   var nameP = document.createElement('p');
+//   nameP.innerHTML = name;
+//   nameLineDiv.appendChild(nameP);
+//   var coaPic = document.createElement('img');
+//   charPicImg.setAttribute('src', housePicPath);
+//   charPicImg.setAttribute('alt', `${house} house`);
+//   nameLineDiv.appendChild(coaPic);
+
+
+// var 
+// }
+
+function coaPicDecider(house) {
+  var content = '';
+  if (house) {
+    content = `
+<img class="sidebar__charNameLine__coaPic" src="/assets/houses/${house}.png" alt="${house}'s coat of arms">
+`;
+  } else {
+    content = `
+  <p class="sidebar__charImages__img"></p>
+  `;
+  }
+  return content;
+}
+
+
 function userSearchFoundWriteToPage(arr) {
   var content = '';
   if (arr[0].name) {
     content = `
-<div><img src="${arr[0].picture}" alt="">${arr[0].name}'s picture</div>
-<div>
-  <p></p>
-  <img src="${arr[0].housePath}" alt="Coat of arms of the ${arr[0].house} house">
-</div>
-<div>
-  <p class="characterDesc" >${arr[0].bio}</p>
-</div>
-
-`;
+    <div class="sidebar__charImages">
+      <img class="sidebar__charImages__img" src="${arr[0].picture}" alt="${arr[0].name}'s picture">
+    </div>
+    <div class="sidebar__charNameLine">
+      <p class="sidebar__charNameLine__name">${arr[0].name}</p>
+      ${coaPicDecider(arr[0].house)}
+      </div>
+    <div class="sidebar__charDescDiv">
+      <p class="sidebar__charDescDiv__descP" >${arr[0].bio}</p>
+    </div>
+    
+    `;
   } else {
-    content = 'Character not found';
+    content = `
+    <p class="sidebar__charDescDiv__descP" >Character not found</p>
+    `;
   }
   document.querySelector('#queryResultBox').innerHTML = content;
 }
+
+
+// document.querySelector('#userQueryButton').addEventListener('click',userQueryClick);
