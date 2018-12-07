@@ -85,9 +85,20 @@ function galleryDisplay(arr) {
   var mainBox = document.querySelector('#mainBox');
   for (var k in arr) {
     if (arr.hasOwnProperty(k)) {
-      mainBox.appendChild(makeSinglePortraitContainer(arr[k].name, arr[k].portrait));
+      var divMade = makeSinglePortraitContainer(arr[k].name, arr[k].portrait);
+      divMade.character = arr[k];
+      divMade.onclick = function portraitClick() {
+        portraitClickDisplay(this.character)
+      };
+      mainBox.appendChild(divMade);
     }
   }
+}
+
+function portraitClickDisplay(obj) {
+  var objInArr = [];
+  objInArr.push(obj);
+  userSearchFoundWriteToPage(objInArr)
 }
 
 
