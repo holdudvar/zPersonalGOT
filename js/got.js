@@ -15,7 +15,8 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Innen hívhatod meg a többi függvényed
 
   galleryDisplay(sortByName(collectAlive(userDatas)));
-  // document.querySelector('#userQueryButton').addEventListener('click', userSearch(userDatas));
+// document.querySelector('#userQueryButton').addEventListener('click',userQueryClick);
+
 
 
 
@@ -28,6 +29,7 @@ getGameOfThronesCharacterDatas(
 
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
+
 
 function collectAlive(arr) {
   var alive = [];
@@ -70,11 +72,11 @@ function galleryDisplay(arr) {
   for (var k in arr) {
     if (arr.hasOwnProperty(k)) {
       content += `
-<div class="portraitContainer">
-      <img src="${arr[k].portrait}" alt="${arr[k].name}'s portrait">
-      <p>${arr[k].name}</p>
-</div>
-`;
+        <div class="mainArea__portraitContainer">
+        <img src="${arr[k].portrait}" alt="${arr[k].name}'s portrait">
+        <p>${arr[k].name}</p>
+        </div>
+        `;
     }
   }
   document.querySelector('#mainBox').innerHTML = content;
@@ -82,8 +84,15 @@ function galleryDisplay(arr) {
 
 
 
+document.querySelector('#userQueryButton').addEventListener('click', userSearch);
 
-
+function addHousePicPath(arr) {
+  if (arr[0].name) {
+    if (arr[0].house) {
+      arr[0].housePath = `assets/houses/${arr[0].house}.png`;
+    }
+  }
+}
 
 
 function userSearch(arr) {
@@ -96,6 +105,7 @@ function userSearch(arr) {
       }
     }
   }
+  addHousePicPath(searchFound);
   userSearchFoundWriteToPage(searchFound);
 }
 
@@ -106,7 +116,7 @@ function userSearchFoundWriteToPage(arr) {
 <div><img src="${arr[0].picture}" alt="">${arr[0].name}'s picture</div>
 <div>
   <p></p>
-  <img src="" alt="szia!">
+  <img src="${arr[0].housePath}" alt="Coat of arms of the ${arr[0].house} house">
 </div>
 <div>
   <p class="characterDesc" >${arr[0].bio}</p>
@@ -118,4 +128,3 @@ function userSearchFoundWriteToPage(arr) {
   }
   document.querySelector('#queryResultBox').innerHTML = content;
 }
-
