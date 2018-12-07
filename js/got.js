@@ -15,7 +15,7 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Innen hívhatod meg a többi függvényed
 
   galleryDisplay(sortByName(collectAlive(userDatas)));
-// document.querySelector('#userQueryButton').addEventListener('click',userQueryClick);
+  // document.querySelector('#userQueryButton').addEventListener('click',userQueryClick);
 
 
 
@@ -67,21 +67,28 @@ function sortByName(arr) {
   return arr;
 }
 
-function galleryDisplay(arr) {
-  var content = '';
-  for (var k in arr) {
-    if (arr.hasOwnProperty(k)) {
-      content += `
-        <div class="mainArea__portraitContainer">
-        <img src="${arr[k].portrait}" alt="${arr[k].name}'s portrait">
-        <p>${arr[k].name}</p>
-        </div>
-        `;
-    }
-  }
-  document.querySelector('#mainBox').innerHTML = content;
+function makeSinglePortraitContainer(name, imgPath) {
+  var portraitDiv = document.createElement('div');
+  portraitDiv.setAttribute('class', 'mainArea__portraitContainer');
+  var portraitImg = document.createElement('img');
+  portraitImg.setAttribute('src', imgPath);
+  portraitImg.setAttribute('alt', `${name}'s portrait`);
+  portraitDiv.appendChild(portraitImg);
+  var nameP = document.createElement('p');
+  nameP.innerHTML = name;
+  portraitDiv.appendChild(nameP);
+  return portraitDiv;
 }
 
+
+function galleryDisplay(arr) {
+  var mainBox = document.querySelector('#mainBox');
+  for (var k in arr) {
+    if (arr.hasOwnProperty(k)) {
+      mainBox.appendChild(makeSinglePortraitContainer(arr[k].name, arr[k].portrait));
+    }
+  }
+}
 
 
 document.querySelector('#userQueryButton').addEventListener('click', userSearch);
