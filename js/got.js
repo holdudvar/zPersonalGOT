@@ -22,9 +22,6 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   function userQueryClick() {
     userSearch(userDatas);
   }
-
-
-
 }
 
 getGameOfThronesCharacterDatas(
@@ -108,8 +105,6 @@ function galleryDisplay(arr) {
 }
 
 
-// document.querySelector('#userQueryButton').addEventListener('click', userSearch);
-
 function addHousePicPath(arr) {
   if (arr[0].name) {
     if (arr[0].house) {
@@ -119,13 +114,17 @@ function addHousePicPath(arr) {
 }
 
 
+// if (arr[k].name.toLowerCase() === inputLowerCase) {
+// replaced
+// I made the search so it finds not only the full name, but partial matching user query as well. If there is more hits, it returns the first hit in the dataset.
 function userSearch(arr) {
   var searchFound = [];
   var inputLowerCase = document.querySelector('#userQuery').value.toLowerCase();
   for (var k in arr) {
     if (arr.hasOwnProperty(k)) {
-      if (arr[k].name.toLowerCase() === inputLowerCase) {
+      if (arr[k].name.toLowerCase().indexOf(inputLowerCase) > -1 ) {
         searchFound.push(arr[k]);
+        break;
       }
     }
   }
@@ -143,7 +142,6 @@ function notFoundWriter() {
  `;
   document.querySelector('#queryResultBox').innerHTML = content;
 }
-
 
 
 function coaPicDecider(house) {
