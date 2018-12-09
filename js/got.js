@@ -17,6 +17,12 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   galleryDisplay(sortByName(collectAlive(userDatas)));
 
 
+  document.querySelector('#userQueryButton').addEventListener('click', userQueryClick);
+
+  function userQueryClick() {
+    userSearch(userDatas);
+  }
+
 
 
 }
@@ -80,20 +86,6 @@ function makeSinglePortraitContainer(name, imgPath) {
 }
 
 
-function galleryDisplay(arr) {
-  var mainBox = document.querySelector('#mainBox');
-  for (var k in arr) {
-    if (arr.hasOwnProperty(k)) {
-      var divMade = makeSinglePortraitContainer(arr[k].name, arr[k].portrait);
-      divMade.character = arr[k];
-      divMade.onclick = function portraitClick() {
-        portraitClickDisplay(this.character)
-      };
-      mainBox.appendChild(divMade);
-    }
-  }
-}
-
 function portraitClickDisplay(obj) {
   var objInArr = [];
   objInArr.push(obj);
@@ -101,7 +93,22 @@ function portraitClickDisplay(obj) {
 }
 
 
-document.querySelector('#userQueryButton').addEventListener('click', userSearch);
+function galleryDisplay(arr) {
+  var mainBox = document.querySelector('#mainBox');
+  for (var k in arr) {
+    if (arr.hasOwnProperty(k)) {
+      var divMade = makeSinglePortraitContainer(arr[k].name, arr[k].portrait);
+      divMade.character = arr[k];
+      divMade.onclick = function portraitClick() {
+        portraitClickDisplay(this.character);
+      };
+      mainBox.appendChild(divMade);
+    }
+  }
+}
+
+
+// document.querySelector('#userQueryButton').addEventListener('click', userSearch);
 
 function addHousePicPath(arr) {
   if (arr[0].name) {
@@ -122,29 +129,22 @@ function userSearch(arr) {
       }
     }
   }
-  addHousePicPath(searchFound);
-  userSearchFoundWriteToPage(searchFound);
+  if (searchFound.length > 0) {
+    addHousePicPath(searchFound);
+    userSearchFoundWriteToPage(searchFound);
+  } else {
+    notFoundWriter();
+  }
 }
 
-// function makeSidebarDisplay(name, picPath, house, housePicPath, bio) {
-//   var contentDiv = document.createElement('div');
-//   var charPicImg = document.createElement('img');
-//   charPicImg.setAttribute('src', picPath);
-//   charPicImg.setAttribute('alt', name);
-//   contentDiv.appendChild(charPicImg);
-//   var nameLineDiv = document.createElement('div');
-//   contentDiv.appendChild(nameLineDiv);
-//   var nameP = document.createElement('p');
-//   nameP.innerHTML = name;
-//   nameLineDiv.appendChild(nameP);
-//   var coaPic = document.createElement('img');
-//   charPicImg.setAttribute('src', housePicPath);
-//   charPicImg.setAttribute('alt', `${house} house`);
-//   nameLineDiv.appendChild(coaPic);
+function notFoundWriter() {
+  var content = `
+ <p class="sidebar__charDescDiv__descP" >Character not found</p>
+ `;
+  document.querySelector('#queryResultBox').innerHTML = content;
+}
 
 
-// var 
-// }
 
 function coaPicDecider(house) {
   var content = '';
@@ -184,6 +184,3 @@ function userSearchFoundWriteToPage(arr) {
   }
   document.querySelector('#queryResultBox').innerHTML = content;
 }
-
-
-// document.querySelector('#userQueryButton').addEventListener('click',userQueryClick);
