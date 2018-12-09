@@ -58,7 +58,16 @@ padding: 5px;
     margin: 5px auto;
 }
 
+.mainArea__portraitContainer:hover {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  background: grey;
+  border-radius: 3px;
+}
 
+.mainArea__portraitContainer:active {
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(235, 109, 7, 0.7) ;
+}
 
 .button {
   margin: 15px;

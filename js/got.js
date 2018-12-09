@@ -138,7 +138,7 @@ function userSearch(arr) {
 
 function notFoundWriter() {
   var content = `
- <p class="sidebar__charDescDiv__descP" >Character not found</p>
+ <p class="sidebar__charDescDiv__descP" >Character not found...</p>
  `;
   document.querySelector('#queryResultBox').innerHTML = content;
 }
